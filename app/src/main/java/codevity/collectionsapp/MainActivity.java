@@ -1,5 +1,6 @@
 package codevity.collectionsapp;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onClickNamesSettings(MenuItem item) {
+        Intent myIntent = new Intent(this, NamesActivity.class);
+        startActivity(myIntent);
     }
 
     class TokenSearch extends AsyncTask<Void, Void, String> {
