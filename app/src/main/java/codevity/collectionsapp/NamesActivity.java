@@ -30,7 +30,6 @@ import java.util.concurrent.ExecutionException;
 public class NamesActivity extends ListActivity {
     private ArrayAdapter<String> adapter;
     private List<String> list;
-    static final String API_URL = "http://serwer1706813.home.pl/collapi/public/api";
     public String[] values = null;
 
     @Override
@@ -49,9 +48,6 @@ public class NamesActivity extends ListActivity {
         }
 
         list = new ArrayList<String>();
-        for(int i = 0; i < values.length; i++) {
-            Log.i("test1", values[i].toString());
-        }
 
         Collections.addAll(list, values);
         adapter = new ArrayAdapter<String>(this,
@@ -62,7 +58,7 @@ public class NamesActivity extends ListActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(NamesActivity.this,NamesAddActivity.class));
+                startActivity(new Intent(NamesActivity.this, NamesAddActivity.class));
             }
         });
     }
@@ -81,7 +77,7 @@ public class NamesActivity extends ListActivity {
 
 
             try {
-                URL url = new URL(API_URL + "/names");
+                URL url = new URL(AppConfig.API_URL + "/names");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

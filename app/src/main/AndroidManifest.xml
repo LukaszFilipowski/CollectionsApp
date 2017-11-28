@@ -3,6 +3,7 @@
     package="codevity.collectionsapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -25,7 +26,8 @@
             android:name=".NamesActivity"
             android:label="@string/title_activity_names"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NamesAddActivity"></activity>
+        <activity android:name=".NamesAddActivity" />
+        <activity android:name=".AddTransactionActivity"></activity>
     </application>
 
 </manifest>

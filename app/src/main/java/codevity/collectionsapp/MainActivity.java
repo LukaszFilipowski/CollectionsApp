@@ -25,9 +25,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
 
     static String API_KEY;
-    static final String API_URL = "http://serwer1706813.home.pl/collapi/public/api";
-    public static final String PREFS_NAME = "CollectionAppSettings";
-    public String token;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // STORAGE FIND OR CREATE
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences settings = getSharedPreferences(AppConfig.PREFS_NAME, 0);
         token = settings.getString("token", "");
         if (token == "") {
             AsyncTask ts = new TokenSearch().execute();
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             try {
-                URL url = new URL(API_URL + "/getToken");
+                URL url = new URL(AppConfig.API_URL + "/getToken");
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 try {
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -123,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
                 token = object.getString("token");
-                SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+                SharedPreferences settings = getSharedPreferences(AppConfig.PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("token", token);
                 editor.commit();
